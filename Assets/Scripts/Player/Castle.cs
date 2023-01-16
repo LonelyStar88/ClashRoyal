@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Castle : MonoBehaviour
+public abstract class Castle : MonoBehaviour
 {
     [SerializeField] private float maxHP;
     [SerializeField] private Image imageHP;
