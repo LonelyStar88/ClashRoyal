@@ -23,14 +23,19 @@ public abstract class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("enemy");
+        FindTarget(agent);
+    }
+
+    public virtual void FindTarget(NavMeshAgent agents)
+    {
+        GameObject[] characters = GameObject.FindGameObjectsWithTag(charData.findTag);
         if (characters.Length == 0)
             return;
 
         float distance = 100f;
         GameObject findTarget = null;
 
-        foreach(var character in characters)
+        foreach (var character in characters)
         {
             //가장 가까운 적을 찾으면 적과 자신의 거리를 구하고 타겟을 그 적으로 잡는다.
             float dis = Vector3.Distance(agent.transform.position, character.transform.position);
@@ -59,7 +64,6 @@ public abstract class Character : MonoBehaviour
             ChangeAnim("Attack");
         }
     }
-
     public virtual void ChangeAnim(string state)
     {
         animator.SetTrigger(state);

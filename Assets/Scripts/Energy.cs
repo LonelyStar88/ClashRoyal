@@ -30,7 +30,7 @@ public class Energy : MonoBehaviour
         
         
         time += Time.deltaTime;
-        if(time > 1f)
+        if(time > 0.1f)
         {
             time = 0f;
             if (index < energys.Length)
@@ -43,8 +43,10 @@ public class Energy : MonoBehaviour
             }
             if (energys[index].isFull)
             {
+                if(index < (energys.Length - 1))
                 index++;
             }
+           
         }
     }
     void emptygage()
@@ -64,8 +66,8 @@ public class Energy : MonoBehaviour
         {
             if (energys[index].curEG < energys[index].maxEG)
             {
-                yield return new WaitForSeconds(0.1f);
-                energys[index].curEG += 5;
+                yield return new WaitForSeconds(0.01f);
+                energys[index].curEG += 25;
                 energyIMGs[index].fillAmount = energys[index].curEG / energys[index].maxEG;
                 //index++;
             }

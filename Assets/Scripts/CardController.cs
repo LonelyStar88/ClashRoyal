@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class CardController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] CardUI card;
+    public int Index { get; set;}
+    public bool Empty { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    CardData cardData;
+
+    public CardUI SellectCard()
     {
-        
+        return card;
+    }
+    public CardUI HideCard()
+    {
+        return card;
+    }
+    public int CardofIndex()
+    {
+        return 0;
     }
 }
