@@ -5,16 +5,19 @@ using UnityEngine;
 public class CardUI : MonoBehaviour
 {
     
-    [SerializeField] GameObject card;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject card;
+    //[SerializeField] Transform[] parents;
+    [SerializeField] NextCard nextcard;
 
-    // Update is called once per frame
-    void Update()
+    public GameObject[] cards;
+
+    public CardData carddata;
+    public bool Useable { get; set; }
+    int count = 0;
+    public void Initialize()
     {
-        
+       carddata = nextcard.SelectCard(); // NextCard에서 CardData값 반환
+       card = nextcard.CardIMG();
+       count++;
     }
 }

@@ -16,8 +16,8 @@ public class NextCard : MonoBehaviour
     //RectTransform trans = GetComponent<RectTransform>();
     int cost = 0;
     int count = 0;
-    // Start is called before the first frame update
-    void Awake()
+    
+    public void Initialize()
     {
         for(int i = 0; i < 10; i++)
         {
@@ -29,11 +29,7 @@ public class NextCard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < images.Length; i++)
-        {
-            // 1초마다 images 배열에 Card 프리팹을 임시칸에 생성하고 images 배열에 넣기
-            //images[i] = cards.Dequeue()
-        }
+       
     }
 
     public void NextCardAdd()
@@ -41,8 +37,34 @@ public class NextCard : MonoBehaviour
         if (cards.Count == 4)
             return;
 
-        Instantiate(card, parent);
+        if (count < images.Length - 1)
+        {
+            if (images[count] != null)
+            {
+                cards.Enqueue(CreateCard());
+                images[count] = Instantiate(card, parent);
+                count++;
+            }
+        }
+        count = images.Length - 1;
     }
 
-    //public CardData 
+    public CardData CreateCard()
+    {
+        CardData tempcard = new CardData();
+        tempcard.Cost = Random.Range(1, 5);
+        tempcard.Speed = 1.5f;
+
+        return tempcard;
+    }
+    public CardData SelectCard()
+    {
+        CardData tempcard = cards.Dequeue();
+        return tempcard;
+    }
+    public GameObject CardIMG()
+    {
+        return card;
+    }
+   
 }
